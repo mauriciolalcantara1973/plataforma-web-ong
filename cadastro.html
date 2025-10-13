@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Voluntário - Transformando Vidas</title>
+    <meta name="description" content="Faça parte da nossa equipe! Preencha o formulário e cadastre-se para ser um voluntário na [Nome da ONG].">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <img src="img/logo.png" alt="Logo" class="imagem-tamanho-fixo0">
+			<style>
+			.imagem-tamanho-fixo0 {
+				width:  715px;
+				height: 363px;
+				object-fit: cover; /* Opcional: Garante que a imagem cubra a área sem distorcer */
+			  }
+		</style>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="cadastro.html">Participe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="formulario-cadastro">
+            <h2>Formulário de Cadastro de Voluntários</h2>
+            <p>Preencha seus dados abaixo. Entraremos em contato em breve!</p>
+
+            <form action="/sucesso" method="post">
+                <fieldset>
+                    <legend>Dados Pessoais</legend>
+                    <div>
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" id="nome" name="nome_completo" required minlength="3" placeholder="Seu nome completo">
+                    </div>
+                    <div>
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required placeholder="exemplo@email.com">
+                    </div>
+                    <div>
+                        <label for="cpf">CPF:</label>
+                        <input type="text" id="cpf" name="cpf" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" title="Digite um CPF no formato: 000.000.000-00">
+                    </div>
+                    <div>
+                        <label for="telefone">Telefone:</label>
+                        <input type="tel" id="telefone" name="telefone" required pattern="\(\d{2}\)\s\d{4,5}-\d{4}" placeholder="(00) 90000-0000" title="Digite um telefone no formato: (00) 90000-0000">
+                    </div>
+                     <div>
+                        <label for="nascimento">Data de Nascimento:</label>
+                        <input type="date" id="nascimento" name="data_nascimento" required>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Endereço</legend>
+                    <div>
+                        <label for="cep">CEP:</label>
+                        <input type="text" id="cep" name="cep" required pattern="\d{5}-\d{3}" placeholder="00000-000" title="Digite um CEP no formato: 00000-000">
+                    </div>
+                    <div>
+                        <label for="endereco">Endereço:</label>
+                        <input type="text" id="endereco" name="endereco" required minlength="5" placeholder="Rua, Avenida, etc.">
+                    </div>
+                    <div>
+                        <label for="cidade">Cidade:</label>
+                        <input type="text" id="cidade" name="cidade" required>
+                    </div>
+                    <div>
+                        <label for="estado">Estado:</label>
+                        <input type="text" id="estado" name="estado" required>
+                    </div>
+                </fieldset>
+
+                <button type="submit">Enviar Cadastro</button>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Transformando Vidas. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Máscara para CPF
+        document.getElementById('cpf').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            e.target.value = value;
+        });
+
+        // Máscara para Telefone
+        document.getElementById('telefone').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+            value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+            e.target.value = value;
+        });
+
+        // Máscara para CEP
+        document.getElementById('cep').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+            e.target.value = value;
+        });
+    </script>
+
+</body>
+</html>
